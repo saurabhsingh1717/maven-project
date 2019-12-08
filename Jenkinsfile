@@ -38,6 +38,15 @@ withMaven(jdk: 'LocalJDK', maven:'LocalMaven')
 sh 'mvn package'
 }
 }
-}  
+}
+stage ('deploy my project on tomcat')
+{
+steps
+{
+sshagent(['tomcat_ssh']) {
+sh 'scp -o StrictHostKeyChecking=no */target/*.war ec2-user@172.31.39.172:/var/lib/tomcat/webapps'
+}
+}
+}
 }
 }
