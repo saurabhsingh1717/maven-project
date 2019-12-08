@@ -28,6 +28,16 @@ withMaven(jdk: 'LocalJDK', maven:'LocalMaven')
 sh 'mvn test'
 }
 }
+}
+stage ('build my project')
+{
+steps
+{
+withMaven(jdk: 'LocalJDK', maven:'LocalMaven')
+{
+sh 'mvn package'
+}
+}
 }  
 }
 }
